@@ -1,10 +1,18 @@
-version: '3.8'
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+      target: ${TARGET:-development}  # Default to 'development' if TARGET is unset
     ports:
       - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    environment:
+      - PORT=8080
     volumes:
       - .:/app
+    restart: unless-stopped

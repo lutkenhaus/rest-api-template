@@ -17,6 +17,7 @@ rest-api-template/
 ├── Dockerfile          # Multi-stage Docker configuration
 ├── .dockerignore       # Files to exclude from Docker builds
 ├── .gitignore          # Git ignore rules
+├── .env                # Environment variables
 └── README.md           # Project documentation
 ```
 # ✨ Features
@@ -62,25 +63,15 @@ curl http://localhost:8080/ping
 ```
 
 4. Run with Docker
-Build the image:
 
+Using docker-compose.yml:
 ```bash
-docker build -t rest-api:prod --target production .
+docker-compose up --build
 ```
-Run the container:
-```bash
-docker run -p 8080:8080 --name rest-api-app rest-api:prod
 ```
 Test the running container:
 ```bash
 curl http://localhost:8080/ping
-```
-
-5. Development Mode (In progress...)
-Build and run with live reloading:
-```bash
-docker build -t rest-api-template:dev --target development .
-docker run -p 8080:8080 -v $(pwd):/app rest-api-template:dev
 ```
 
 # 📋 Usage
